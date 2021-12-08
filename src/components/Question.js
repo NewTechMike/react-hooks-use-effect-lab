@@ -1,9 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function Question({ question, onAnswered }) {
   const [timeRemaining, setTimeRemaining] = useState(10);
 
   // add useEffect code
+  // use 'useEffect' and 'setTimeout' to run a callback 
+  // function after 1 second
+  // The callback function for 'setTimeout',
+  // use 'setTimeRemaining' to decrease time by 1
+
+  // when "timeRemaining" equals 0: 
+  // - Reset timeRemaining to 10 seconds
+  // - set onAnswered() to false
+
+  useEffect(() => {
+    if(timeRemaining === 0) {zeroSeconds()}
+    
+    else{
+    const time
+     = setTimeout(() => 
+      setTimeRemaining(
+        (timeRemaining) => timeRemaining - 1), 1000);
+        return function cleanup(){
+        clearTimeout(time);
+        }   
+  }}, [timeRemaining ])
+
+  function zeroSeconds(){
+    setTimeRemaining(10)
+    onAnswered(false)
+    return;
+  }
 
   function handleAnswer(isCorrect) {
     setTimeRemaining(10);
